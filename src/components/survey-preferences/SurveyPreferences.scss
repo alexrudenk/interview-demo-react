@@ -1,0 +1,41 @@
+.checkboxes-block {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 10px 25px 10px;
+    align-items: center;
+    margin: auto;
+    width: 50%;
+    min-width: 400px;
+
+    label {
+        font-size: 20px;
+        font-weight: 500;
+        margin-bottom: 5px;
+    }
+
+    input:not([type='checkbox']) {
+        height: 32px;
+        font-size: 18px;
+        border: none;
+        background-color: #e9ebec;
+        padding: 0 5px;
+
+        &.error {
+            border: 1px solid red;
+        }
+    } 
+
+    h2 {
+        margin: 0 0 10px 0;
+    }
+
+    .controls {
+        width: 50%;
+        min-width: 200px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+}

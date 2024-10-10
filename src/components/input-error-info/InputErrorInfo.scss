@@ -1,0 +1,11 @@
+.error-block {
+    position: absolute;
+    bottom: 0;
+    margin: 5px 0;
+    display: flex;
+    flex-direction: column;
+
+    small {
+        color: #f70303;
+    }
+}
