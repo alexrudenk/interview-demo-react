@@ -2,8 +2,9 @@ import FormField from '../form-field/FormField';
 import SurveyPreferences from '../survey-preferences/SurveyPreferences';
 import './Survey.scss';
 import { useRef } from 'react';
-import { collection, getDocs } from 'firebase/firestore';
+import { addDoc, collection } from 'firebase/firestore';
 import { firebaseDB } from '../../environment/environment';
+import { SurveyAnswerModel } from '../../models/survey-answer-interface';
 
 function Survey() {
     const formRef = useRef<HTMLFormElement>();
@@ -14,9 +15,25 @@ function Survey() {
 
         const formData = new FormData(event.target);
         const surveyData = Object.fromEntries(formData.entries());
-        console.log(surveyData)
+        sendAnswer(surveyData);
         if (formRef.current) {
             formRef?.current.reset();
+        }
+    }
+
+    const sendAnswer = async (answer) => {
+        await addDoc(collectionRef, mapFormDataToSurveyAnswer(answer))
+    }
+
+    const mapFormDataToSurveyAnswer = (formData): SurveyAnswerModel => {
+        return {
+            name: formData.name,
+            age: formData.age,
+            preferences: {
+                sports: !!formData.sports,
+                books: !!formData.books,
+                travel: !!formData.travel
+            }
         }
     }
 

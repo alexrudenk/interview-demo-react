@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import Checkbox from '../checkbox/Checkbox';
 import './SurveyPreferences.scss';
+import { PreferenceModel } from '../../models/preference-interface';
 
-const PreferencesList = [
-    'Do sports',
-    'Read books',
-    'Travel',
+const PreferencesList: PreferenceModel[] = [
+    { name: 'sports', label: 'Do sports' },
+    { name: 'books', label: 'Read books' },
+    { name: 'travel', label: 'Travel' },
 ]
 
 function SurveyPreferences() {
@@ -16,7 +17,7 @@ function SurveyPreferences() {
     }
 
     const selectAll = (value) => {
-        value ? setAllSelected(PreferencesList) : setAllSelected([]);
+        value ? setAllSelected(PreferencesList.map(item => item.name)) : setAllSelected([]);
     }
 
     return <div className="checkboxes-block">
@@ -24,8 +25,9 @@ function SurveyPreferences() {
         <div className="controls">
             <Checkbox key='Select all' label='Select all' id='Select all' value={allSelected.length === PreferencesList.length} updateValue={selectAll} ></Checkbox>
         </div>
+        <hr />
         {PreferencesList.map((item) =>
-            <Checkbox key={item} name={item} label={item} value={allSelected.includes(item)} updateValue={handleSelect} ></Checkbox>
+            <Checkbox key={item.name} name={item.name} label={item.label} value={allSelected.includes(item.name)} updateValue={handleSelect} ></Checkbox>
         )}
     </div>
 }

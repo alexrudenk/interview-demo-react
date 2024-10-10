@@ -25,7 +25,7 @@ function SurveyResults() {
         <div className="data">
             {
                 answers.map(answer => {
-                    return <div className="row">
+                    return <div className="row" key={answer.id}>
                         <div className="name">{answer.name}</div>
                         <div className="age">{answer.age}</div>
                         <div className="preferences">

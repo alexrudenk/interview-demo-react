@@ -2,7 +2,7 @@ import React from 'react';
 import './App.scss';
 import Survey from './components/survey/Survey';
 import logo from './assets/images/crossbuilders.svg'
-import { Link, Route, Routes } from 'react-router-dom';
+import { NavLink, Route, Routes } from 'react-router-dom';
 import SurveyResults from './components/survey-results/SurveyResults';
 
 function App() {
@@ -14,10 +14,10 @@ function App() {
           <nav className="header-placeholder">
             <ul>
               <li>
-                <Link to="/survey" >Survey</Link>
+                <NavLink to="/survey" className={({ isActive }) => (isActive ? 'active-link' : 'link')} >Survey</NavLink>
               </li>
               <li>
-                <Link to="results" >Results</Link>
+                <NavLink to="results" className={({ isActive }) => (isActive ? 'active-link' : 'link')}>Results</NavLink>
               </li>
             </ul>
           </nav>
