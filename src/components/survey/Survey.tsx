@@ -2,9 +2,13 @@ import FormField from '../form-field/FormField';
 import SurveyPreferences from '../survey-preferences/SurveyPreferences';
 import './Survey.scss';
 import { useRef } from 'react';
+import { collection, getDocs } from 'firebase/firestore';
+import { firebaseDB } from '../../environment/environment';
 
 function Survey() {
     const formRef = useRef<HTMLFormElement>();
+    const collectionRef = collection(firebaseDB, "answers");
+
     const submitForm = (event) => {
         event.preventDefault();
 
@@ -23,7 +27,7 @@ function Survey() {
             </h1>
         </div>
         <div className="data">
-            <form onSubmit={submitForm}  ref={formRef}>
+            <form onSubmit={submitForm} ref={formRef}>
                 <FormField label='Name' type='text' name='name' minLength={3} required={true}>
                 </FormField>
                 <FormField label='Age' type='number' name='age' min={0} max={100} required={true}>

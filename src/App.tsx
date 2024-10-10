@@ -2,6 +2,8 @@ import React from 'react';
 import './App.scss';
 import Survey from './components/survey/Survey';
 import logo from './assets/images/crossbuilders.svg'
+import { Link, Route, Routes } from 'react-router-dom';
+import SurveyResults from './components/survey-results/SurveyResults';
 
 function App() {
   return (
@@ -9,20 +11,24 @@ function App() {
       <header>
         <div className="container">
           <img src={logo} />
-          <div className="header-placeholder">
+          <nav className="header-placeholder">
             <ul>
               <li>
-                <a >Survey</a>
+                <Link to="/survey" >Survey</Link>
               </li>
               <li>
-                <a>Results</a>
+                <Link to="results" >Results</Link>
               </li>
             </ul>
-          </div>
+          </nav>
         </div>
       </header>
       <main>
-        <Survey></Survey>
+        <Routes>
+          <Route path='*' element={<Survey></Survey>}></Route>
+          <Route path='/survey' element={<Survey></Survey>}></Route>
+          <Route path='/results' element={<SurveyResults></SurveyResults>}></Route>
+        </Routes>
       </main>
       <footer>
       </footer>
